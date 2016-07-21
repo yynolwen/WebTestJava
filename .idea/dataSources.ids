@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - @localhost" uuid="941db719-bf08-415e-8e69-b748b21dfe44">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="MySQL - ospieafrpffqin.mysql.db@ftp.cluster006.hosting.ovh.net" uuid="8c95ba2f-456d-4313-9326-879601db384a">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

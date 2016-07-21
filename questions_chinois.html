@@ -1,0 +1,39 @@
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <div class="masthead2 clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand"><a href="#/">Java程序测试</a> </h3>
+
+                </div>
+            </div>
+
+            <div class="container">
+                <form method="post" action="">
+                    <div class="page-header" ng-repeat="test in tests">
+                        <h3>问题 {{ test.id }} / 10 : {{ test.subject }} </h3>
+                        <h4 ng-repeat="choice in test.choices"><label><input type="radio" name="{{choice.questionId}}" value="{{choice.id}}"/> {{choice.id}} : {{choice.subject}} </label><br/></h4>
+                    </div>
+                    <div class="inner cover">
+                        <p class="lead">
+                            <br/>
+                            <input class="btn btn-lg btn-default" type="submit">
+                        </p>
+                    </div>
+                </form>
+                <br/><br/>
+            </div>
+
+            <div class="mastfoot2">
+                <div class="inner">
+                    <p>Design by <a href="https://ospiea.fr">@Ospiea</a>.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
