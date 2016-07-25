@@ -42,6 +42,14 @@ class Question {
     {
         $this->id = $id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
 }
 
 ?>

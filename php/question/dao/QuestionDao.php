@@ -48,9 +48,13 @@
         {
             $login = new DBConnect("root", "root");
             $db = $login->connectDB($login->getUsername(), $login->getPassword());
-            $Person = $login->executeSQL($db, "SELECT * FROM Personne Where nom = $nom and email = $email");
+            $Person = $login->executeSQL($db, "SELECT * FROM Personne Where nom = '$nom' and email = '$email'");
             return $Person;
 
         }
 
     }
+
+    $ess = new QuestionDao();
+    $person = $ess->getAllQuestions();
+    print_r($person) ;

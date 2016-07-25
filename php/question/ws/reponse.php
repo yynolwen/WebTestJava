@@ -12,7 +12,7 @@ require_once('../dao/QuestionDao.php');
 
 $data = json_decode(file_get_contents("php://input"));
 $login = new DBConnect("root","root");
-$choices = $login->test_input($data->choices);
+$choices = $login->test_input($data->cx);
 //$deChoices = json_decode($choices);
 
 $db = $login->connectDB($login->getUsername(),$login->getPassword());
@@ -28,5 +28,10 @@ for($i=0;$i<count($deChoices);$i++){
 foreach( $choices as $questionId => $choiceId )
 {
     $personId = $person->getPersonId($questionId,$choiceId);
+    if($row=$person->fetch())
+    {
+        echo $row['id'];
+    }
+
     $login->executeSQL($db,"INSERT INTO Repondre(id_personne,id_question,id_reponse) VALUES('".$personId['id']."', '".$questionId."','".$choiceId."')");
 }
