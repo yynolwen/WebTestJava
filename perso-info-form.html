@@ -1,39 +1,3 @@
-<div class="site-wrapper" ng-repeat="test in tests">
-
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <div class="masthead2 clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand"><a href="#/"> Test Java </a> </h3>
-
-                </div>
-            </div>
-
-            <div class="container" >
-                <!--<form method="post" action="">-->
-                <div class="page-header">
-                    <h3>Question {{ test.id }} / 10 : {{ test.subject }} </h3>
-                </div>
-                <div ng-repeat="choice in test.choices">
-                    <button ng-model="test.id" value="choice.id" class="btn btn-default" ng-click="removeQuestion(test,test.id,choice.id)">{{choice.id}} : {{choice.subject}}</button><br><br>
-                </div>
-                <!--<h4  ng-repeat="choice in test.choices"><label><input type="radio" name="{{choice.questionId}}" value="{{choice.id}}"  ng-click="removeName(test)"/> {{choice.id}} : {{choice.subject}} </label><br/></h4>-->
-                <!--</form>-->
-                <br/><br/>
-            </div>
-            <div class="mastfoot2">
-                <div class="inner">
-                    <p>Design by <a href="https://ospiea.fr">@Ospiea</a>.</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
@@ -72,12 +36,10 @@
                         <input type="text" class="form-control" id="inputOrga" placeholder="Organisation" name="organisation" ng-model="orga" required>
                     </div>
                 </div>
-                <div class="form-group">
-                    <h4>Pour valider la formulaire, veuillez remplir tous les champs avec *</h4>
-                </div>
+                <h4 class="cover-heading">Pour valider la formulaire, veuillez remplir tous les champs avec *</h4>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" ng-click="insertData('/fin_francais')">Valider</button>
+                        <button type="submit" class="btn btn-default" ng-click="pform.submitData('/fin_francais')">Valider</button>
                     </div>
                 </div>
             </form>

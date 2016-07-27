@@ -7,18 +7,18 @@
 
             <div class="masthead2 clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand"><a href="#/">Java程序员测试</a> </h3>
+                    <h3 class="masthead-brand"><a href="#/"> Test Java </a> </h3>
 
                 </div>
             </div>
 
             <!--<form method="post" action="">-->
             <div class="page-header">
-                <h4>问题 : {{qCtrl.currentQindex + 1}} / 10</h4>
+                <h4>Question : {{qCtrl.currentQindex + 1}} / 10</h4>
                 <h4>{{qCtrl.currentQ.subject}}</h4>
             </div>
             <div ng-repeat="choice in qCtrl.currentQ.choices">
-                <button class="btn btn-default" ng-click="qCtrl.answerQuestion(choice.id,'/ChinesepersoInfo')">{{choice.id}}.{{choice.subject}}</button><br><br>
+                <button class="btn btn-default" ng-click="qCtrl.answerQuestion(choice.id,'/persoInfo')">{{choice.id}}.{{choice.subject}}</button><br><br>
             </div>
             <!--<h4  ng-repeat="choice in test.choices"><label><input type="radio" name="{{choice.questionId}}" value="{{choice.id}}"  ng-click="removeName(test)"/> {{choice.id}} : {{choice.subject}} </label><br/></h4>-->
             <!--</form>-->

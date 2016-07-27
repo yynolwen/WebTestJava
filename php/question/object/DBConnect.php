@@ -8,50 +8,34 @@
  */
 class DBConnect
 {
-    public $username = "root"; #= "ospieafrpffqin";
-    public $password = "root"; #= "Ospieadm1n";
+    private $username ;
+    private $password ;
 
-    function __construct( $username, $password ) {
-        $this->$username = $username;
-        $this->$password = $password;
+    private $db;
+
+    function __construct( ) {
+
     }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
+    function connectDB()
     {
-        return $this->username;
+        #$db = new PDO("mysql:host=ospieafrpffqin.mysql.db;dbname=ospieafrpffqin", $this->username, $this->password);
+        $this->db = new PDO("mysql:host=localhost;dbname=TestJava", "root", "root");
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPassword()
+    function closeConnection(){
+        $this->db = null;
+    }
+
+
+    function executeSQL($sql)
     {
-        return $this->password;
+        return $this->db->query($sql);
     }
 
-    function connectDB($username, $password)
-    {
-        #$db = new PDO("mysql:host=ospieafrpffqin.mysql.db;dbname=ospieafrpffqin", $username, $password);
-        $db = new PDO("mysql:host=localhost;dbname=TestJava", $username, $password);
-        return $db;
-
-    }
-
-    function executeSQL(PDO $db,$sql)
+    function prepareAndExecuteSQL($sql, $data)
     {
         #$db = $this->connectDB($this->getUsername(),$this->getUsername());
-
-        $result = $db->query($sql);
-        return $result;
-    }
-
-    function prepareSQL(PDO $db,$sql,$data)
-    {
-        #$db = $this->connectDB($this->getUsername(),$this->getUsername());
-        $result = $db->prepare($sql);
+        $result = $this->db->prepare($sql);
         $result->execute($data);
         return $result;
     }

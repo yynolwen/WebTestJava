@@ -10,7 +10,7 @@ a:hover {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 2em;
 }
 
 /* Custom default button */
@@ -108,7 +108,6 @@ body {
   }
 }
 
-
 /*
  * Cover
  */
@@ -168,8 +167,8 @@ body {
 
 
 .container {
-  width: auto;
-  max-width: 680px;
+  width: 100%;
+  max-width: 600px;
   padding: 0 15px;
 }
 .container .text-muted {
@@ -179,3 +178,23 @@ body {
 input{
   color:#000000;
 }
+
+
+html,body{height:100%;}
+
+
+
+@media screen and (max-device-width: 600px) {
+
+  .column {
+    　float: none;
+    　width:auto;
+  }
+
+  #sidebar {
+    　display:none;
+  }
+
+}
+
+

@@ -4,7 +4,7 @@
 
 	$questionDao = new QuestionDao;
 
-	echo json_encode($questionDao->getAllQuestions());
+	echo json_encode(array("questions" => $questionDao->getAllQuestions()));
 
 
 ?>

@@ -5,27 +5,69 @@
 
 	class QuestionDao
     {
+        private $dbConnect;
 
         function __construct()
         {
+            $this->dbConnect = new DBConnect();
         }
 
         public function getAllQuestions()
         {
 
             $AllQuestions = array();
-            $login = new DBConnect("root", "root");
-            $db = $login->connectDB($login->getUsername(), $login->getPassword());
-            $questions = $login->executeSQL($db, "SELECT * FROM Questionnaire Where id<=10");
-            foreach ($questions as $row) {
 
+            $this->dbConnect->connectDB();
+            //$questions = $this->dbConnect->executeSQL("SELECT * FROM Questionnaire Where id<=10");
+            $questionsAndAnswers = $this->dbConnect->executeSQL("SELECT Choix.id as id_choix, Choix.id_question as id_question, Choix.reponse as choix_reponse,  Questionnaire.id_correction as id_correction, Questionnaire.question as subject  FROM Questionnaire LEFT JOIN Choix ON Questionnaire.id = Choix.id_question where Questionnaire.id<=10 order by Questionnaire.id");
+
+            $x = 1; $y = 0;
+
+            $choices = array();
+
+            foreach($questionsAndAnswers as $row)
+            {
+
+                if($row['id_question'] == $x)
+                {
+                    $y++;
+
+                    $choice = new Choice;
+                    $choice->setSubject($row['choix_reponse']);
+                    $choice->setId($row['id_choix']);
+                    $choice->setQuestionId($row['id_question']);
+                    array_push($choices, $choice);
+                }
+
+                if($y==4)
+                {
+                    $x++;
+                    $y = 0;
+                    $question = new Question;
+                    $question->setId($row['id_question']);
+                    $question->setAnswer($row['id_correction']);
+                    $question->setSubject($row['subject']);
+                    $question->setChoices($choices);
+                    $choices = array();
+
+                    array_push($AllQuestions, $question);
+
+                }
+
+
+
+
+            }
+
+/*
+            foreach ($questions as $row) {
                 $question = new Question;
-                $question->setId($row['id']);
+                $question->setId($row['Questionnaire.id']);
                 $question->setAnswer($row['id_correction']);
                 $question->setSubject($row['question']);
                 $choices = array();
 
-                $reponses = $login->prepareSQL($db, "SELECT * FROM Choix where id_question = ?", array($row['id']));
+                $reponses = $this->dbConnect->prepareAndExecuteSQL("SELECT * FROM Choix where id_question = ?", array($row['id']));
                 while ($row2 = $reponses->fetch()) {
                     $choice = new Choice;
                     $choice->setSubject($row2['reponse']);
@@ -36,7 +78,8 @@
                 }
                 $question->setChoices($choices);
                 array_push($AllQuestions, $question);
-            }
+            }*/
+            $this->dbConnect->closeConnection();
 
             //convert result to a list of question objects
             //charge those choices
@@ -46,15 +89,13 @@
 
         public function getPersonId($nom,$email)
         {
-            $login = new DBConnect("root", "root");
-            $db = $login->connectDB($login->getUsername(), $login->getPassword());
-            $Person = $login->executeSQL($db, "SELECT * FROM Personne Where nom = '$nom' and email = '$email'");
+
+            $this->dbConnect->connectDB();
+            $Person =$this->dbConnect->executeSQL("SELECT * FROM Personne Where nom = '$nom' and email = '$email'");
+            $this->dbConnect->closeConnection();
             return $Person;
 
         }
 
     }
 
-    $ess = new QuestionDao();
-    $person = $ess->getAllQuestions();
-    print_r($person) ;
