@@ -8,8 +8,8 @@
  */
 class DBConnect
 {
-    private $username ;
-    private $password ;
+    private $username = "ospieafrpffqin";
+    private $password = "Ospieadm1n";
 
     private $db;
 
@@ -18,8 +18,9 @@ class DBConnect
     }
     function connectDB()
     {
-        #$db = new PDO("mysql:host=ospieafrpffqin.mysql.db;dbname=ospieafrpffqin", $this->username, $this->password);
-        $this->db = new PDO("mysql:host=localhost;dbname=TestJava", "root", "root");
+        $this->db = new PDO("mysql:host=ospieafrpffqin.mysql.db;dbname=ospieafrpffqin", $this->username, $this->password);
+        #$this->db = new PDO("mysql:host=localhost;dbname=TestJava", "root", "root");
+
     }
 
     function closeConnection(){
@@ -53,4 +54,3 @@ class DBConnect
     }
 }
 
-?>

@@ -63,7 +63,7 @@ app.controller('QuestionController', function (userAnswerService, $http, $locati
 
 	function init(){
 
-		$http.get("http://localhost:63342/JavCha/php/question/ws/QuestionWs.php")
+		$http.get("http://ospiea.fr/JavCha/php/question/ws/QuestionWs.php")
 			.success(function(response) {
 				result=response;
 				vm.currentQindex=0;
@@ -104,11 +104,19 @@ app.controller('PersoInfoFormController', function (userAnswerService, $scope, $
 
 	function submitData(path) {
 		userAnswers = JSON.stringify(userAnswerService.getUserAnswers());
-		$http.post("./php/question/ws/submit.php",{'nom':$scope.nom,'email':$scope.email,'phone':$scope.phone,'orga':$scope.orga,'userAnswers':userAnswers})
-			.success(function (data,status,headers,config) {
-				//console.log("data inserted successfully");
-				$location.path(path);
-			})};
+
+		if($scope.nom && $scope.email && $scope.phone && $scope.orga) {
+			console.log($scope.nom);
+			$http.post("./php/question/ws/submit.php",{'nom':$scope.nom,'email':$scope.email,'phone':$scope.phone,'orga':$scope.orga,'userAnswers':userAnswers})
+				.success(function (data,status,headers,config) {
+					//console.log("data inserted successfully");
+					$location.path(path);
+				});
+		}
+/*
+
+*/
+	}
 
 
 	init();

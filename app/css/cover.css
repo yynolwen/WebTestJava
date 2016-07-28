@@ -52,7 +52,7 @@ body {
   display: table-cell;
   vertical-align: top;
 }
-.cover-container {
+.cover-container, pre {
   margin-right: auto;
   margin-left: auto;
 }
@@ -140,6 +140,7 @@ body {
   .masthead {
     position: fixed;
     top: 0;
+
   }
   .mastfoot {
     position: fixed;
@@ -152,7 +153,7 @@ body {
   /* Handle the widths */
   .masthead,
   .mastfoot,
-  .cover-container {
+  .cover-container,pre {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
 }
@@ -160,13 +161,13 @@ body {
 @media (min-width: 992px) {
   .masthead,
   .mastfoot,
-  .cover-container {
+  .cover-container,pre {
     width: 700px;
   }
 }
 
 
-.container {
+.container  {
   width: 100%;
   max-width: 600px;
   padding: 0 15px;
@@ -181,7 +182,9 @@ input{
 
 
 html,body{height:100%;}
-
+pre{
+  font-size:0.8em;
+}
 
 
 @media screen and (max-device-width: 600px) {

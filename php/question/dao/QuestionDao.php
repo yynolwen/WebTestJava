@@ -19,7 +19,7 @@
 
             $this->dbConnect->connectDB();
             //$questions = $this->dbConnect->executeSQL("SELECT * FROM Questionnaire Where id<=10");
-            $questionsAndAnswers = $this->dbConnect->executeSQL("SELECT Choix.id as id_choix, Choix.id_question as id_question, Choix.reponse as choix_reponse,  Questionnaire.id_correction as id_correction, Questionnaire.question as subject  FROM Questionnaire LEFT JOIN Choix ON Questionnaire.id = Choix.id_question where Questionnaire.id<=10 order by Questionnaire.id");
+            $questionsAndAnswers = $this->dbConnect->executeSQL("SELECT jc_Choix.id as id_choix, jc_Choix.id_question as id_question, jc_Choix.reponse as choix_reponse,  jc_Questionnaire.id_correction as id_correction, jc_Questionnaire.question as subject  FROM jc_Questionnaire LEFT JOIN jc_Choix ON jc_Questionnaire.id = jc_Choix.id_question where jc_Questionnaire.id<=10 order by jc_Questionnaire.id");
 
             $x = 1; $y = 0;
 
@@ -47,6 +47,9 @@
                     $question->setId($row['id_question']);
                     $question->setAnswer($row['id_correction']);
                     $question->setSubject($row['subject']);
+
+
+
                     $question->setChoices($choices);
                     $choices = array();
 
@@ -91,11 +94,15 @@
         {
 
             $this->dbConnect->connectDB();
-            $Person =$this->dbConnect->executeSQL("SELECT * FROM Personne Where nom = '$nom' and email = '$email'");
+            $Person =$this->dbConnect->executeSQL("SELECT * FROM jc_Personne Where nom = '$nom' and email = '$email'");
             $this->dbConnect->closeConnection();
             return $Person;
 
         }
 
+
+
+
     }
+
 
